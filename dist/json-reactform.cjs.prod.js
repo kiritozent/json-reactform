@@ -268,7 +268,12 @@ var index = function(_ref2) {
         changed: changedObject
       }));
     }
-  }), [ state ]), React.createElement(React.Fragment, null, React.createElement(reactstrap.Form, {
+  }), [ state ]), React.useEffect((function() {
+    var options = Object.keys(model).reduce((function(a, b) {
+      return "select" === model[b].type && (a[b] = model[b].options), a;
+    }), {});
+    setOptions(options);
+  }), [ model ]), React.createElement(React.Fragment, null, React.createElement(reactstrap.Form, {
     onSubmit: function(e) {
       e.preventDefault(), onSubmit(state);
     }

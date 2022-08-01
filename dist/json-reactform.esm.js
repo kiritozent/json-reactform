@@ -369,6 +369,16 @@ var index = (function (_ref2) {
       }
     }
   }, [state]);
+  React.useEffect(function () {
+    var options = Object.keys(model).reduce(function (a, b) {
+      if (model[b].type === 'select') {
+        a[b] = model[b].options;
+      }
+
+      return a;
+    }, {});
+    setOptions(options);
+  }, [model]);
   return React.createElement(React.Fragment, null, React.createElement(Form, {
     onSubmit: onFormSubmit
   }, formItems));

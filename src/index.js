@@ -371,6 +371,16 @@ export default ({ model, onSubmit, onChange }) => {
     }
   }, [state]);
 
+  React.useEffect(() => {
+    const options = Object.keys(model).reduce((a, b) => {
+      if (model[b].type === 'select') {
+        a[b] = model[b].options;
+      }
+      return a;
+    }, {});
+    setOptions(options);
+  }, [model]);
+
   return (
     <>
       <Form onSubmit={onFormSubmit}>{formItems}</Form>
